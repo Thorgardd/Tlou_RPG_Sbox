@@ -1,0 +1,6 @@
+.vs/
+.editorconfig/
+/code/obj/Debug/*
+/code/obj/*
+/code/Properties/*
+/code/Properties/launchSettings.json
