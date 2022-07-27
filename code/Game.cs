@@ -13,6 +13,7 @@ public partial class TlouGame : Game
 	
 
 	// TRACE SYSTEM
+	//
 	private static Entity TraceSystem(TlouCharacter caller)
 	{
 		var trace = Trace.Ray( caller.EyePosition, caller.EyePosition + caller.EyeRotation.Forward * 300 )
@@ -23,6 +24,19 @@ public partial class TlouGame : Game
 			.Run();
 
 		return trace.Entity;
+	}
+	
+	// TRACE SYSTEM TO GEET COORDINATES
+	public static Vector3 TraceSystemCoordinates(TlouCharacter caller)
+	{
+		var trace = Trace.Ray( caller.EyePosition, caller.EyePosition + caller.EyeRotation.Forward * 200 )
+			.Ignore( caller )
+			.UseHitboxes()
+			.Size( 2 )
+			.WorldAndEntities()
+			.Run();
+
+		return trace.Entity.Position;
 	}
 	
 

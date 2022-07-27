@@ -1,9 +1,14 @@
+using System;
 using Sandbox.Character;
+using Sandbox.Character.Inventory;
+using Sandbox.Items;
 
 namespace Sandbox;
 
 public partial class TlouGame
 {
+	// Infos for yourself
+	//
 	[ConCmd.Server( "/Infos" )]
 	public static void GetInfos()
 	{
@@ -14,6 +19,8 @@ public partial class TlouGame
 		Log.Info( $"Description : {caller.Description}" );
 	}
 
+	// Infos for the target player by looking at him
+	//
 	[ConCmd.Server( "/InfosTrace" )]
 	public static void GetCharTraceInfos()
 	{
@@ -29,5 +36,18 @@ public partial class TlouGame
 
 		Log.Info( $"Nom : {receiver.Name}" );
 		Log.Info( $"Description : {receiver.Description}" );
+	}
+	
+	// Show if Inventory exists
+	//
+	[ConCmd.Client( "/Inventory" )]
+	public static void GetInventory()
+	{
+		var caller = ConsoleSystem.Caller.Pawn as TlouCharacter;
+		
+		if ( caller?.Inventory == null && caller.Inventory is not TlouInventory )
+			Log.Info( "Il n'y a pas d'inventaire disponible pour le personnage actuel" );
+		
+		Log.Info( "Inventaire disponible pour le personnage actuel" );
 	}
 }

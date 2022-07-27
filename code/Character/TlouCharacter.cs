@@ -1,3 +1,5 @@
+using Sandbox.Character.Inventory;
+
 namespace Sandbox.Character;
 
 public class TlouCharacter : Player
@@ -18,6 +20,7 @@ public class TlouCharacter : Player
 	{
 		Name = name;
 		Description = description;
+		Inventory = new TlouInventory(this);
 	}
 	
 	
